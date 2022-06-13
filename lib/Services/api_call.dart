@@ -252,6 +252,28 @@ class ApiCall {
     });
   }
 
+  //CSV upload
+  sendEmployeePoi(file, uploadFilename, token) {
+    var url = Uri.parse(ApiList.csvUploadEmployeePoi);
+    var request = http.MultipartRequest("POST", url);
+
+    request.files.add(http.MultipartFile.fromBytes('file', file,
+        filename: "$uploadFilename"));
+
+    request.headers.addAll({"Authorization": "Bearer $token"});
+
+    request.send().then((response) {
+      // print("test");
+      // print(response.statusCode);
+      if (response.statusCode == 200) {
+        Fluttertoast.showToast(
+            msg: 'Successfully Uploaded ',
+            toastLength: Toast.LENGTH_SHORT,
+            webPosition: "center");
+      }
+    });
+  }
+
 // Field Force Edit Button
   Future singleEmployeeEditRow(
     String id,

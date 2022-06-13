@@ -7,7 +7,11 @@ class ApiList {
   // static String getPoi = 'http://$_ip:$_port/api/v1/poi/poi';
 
   static String csvUploadPoi = 'http://$_ip:$_port/api/v1/poi/';
+
   static String csvUploadFieldForce = 'http://$_ip:$_port/api/v1/user/';
+
+  static String csvUploadEmployeePoi = 'http://$_ip:$_port/api/v1/poiUser';
+
   static String singlePoiAddApi =
       'http://$_ip:$_port/api/v1/poi/single-poi-entry';
 
