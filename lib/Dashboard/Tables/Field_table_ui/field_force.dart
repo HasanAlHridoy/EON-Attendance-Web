@@ -3,6 +3,7 @@ import 'package:attendance_app/Models/poi_data.dart';
 import 'package:flutter/material.dart';
 import 'package:attendance_app/Models/employee_data.dart';
 import 'package:attendance_app/Services/constants.dart';
+import 'package:flutter/services.dart';
 import '../../../Services/api_call.dart';
 import 'field_force_delete_row.dart';
 
@@ -73,23 +74,85 @@ class _FieldForceDataState extends State<FieldForceData> {
                     caption: TextStyle(color: Colors.white),
                   ),
                 ),
-                child: PaginatedDataTable(
-                  // dragStartBehavior: DragStartBehavior.start,
-                  onRowsPerPageChanged: (perPage) {
-                    /**Api for load */
-                  },
-                  // rowsPerPage: 10,
-                  columns: Datacolumn(context),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Spacer(),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              onChanged: (val) {
+                                rowsPerPage = val;
+                              },
+                              style: const TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                labelText: 'Data Count',
+                                labelStyle: TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                              maxLines: 1,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              onChanged: (val) {
+                                pageNumber = val;
+                              },
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                labelText: 'Page Number',
+                                labelStyle: TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {});
+                              },
+                              child: const Text("Fetch Data")),
+                        ],
+                      ),
+                    ),
+                    PaginatedDataTable(
+                      // dragStartBehavior: DragStartBehavior.start,
+                      onRowsPerPageChanged: (perPage) {
+                        /**Api for load */
+                      },
+                      // rowsPerPage: 10,
+                      columns: Datacolumn(context),
 
-                  source: TableRow(
-                      context: context,
-                      employeeData: data,
-                      token: widget.token,
-                      refresh: Refresh,
-                      poiPoints: widget.getList),
+                      source: TableRow(
+                          context: context,
+                          employeeData: data,
+                          token: widget.token,
+                          refresh: Refresh,
+                          poiPoints: widget.getList),
 
-                  // initialFirstRowIndex: 0,
-                  // headingRowHeight: 0,
+                      // initialFirstRowIndex: 0,
+                      // headingRowHeight: 0,
+                    ),
+                  ],
                 ),
               ),
             ),

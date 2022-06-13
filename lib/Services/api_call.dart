@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:attendance_app/Models/attendance_data.dart';
 import 'package:attendance_app/Models/employee_data.dart';
 import 'package:attendance_app/Models/poi_data.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -42,9 +43,6 @@ class ApiCall {
 
     if (response.statusCode == 200) {
       List<PoiDataModel> poiIdList = poiDataModelFromJson(response.body);
-      var a = int.parse(pageNumber);
-      a++;
-      print(a);
 
       return poiIdList;
     } else {
@@ -368,5 +366,29 @@ class ApiCall {
     }
 
     return "Null";
+  }
+
+  List<AttendanceDataModel> attendanceList = [];
+
+  Future getAllAttendance(
+      String token, String rowsPerPage, String pageNumber) async {
+    // print('getAllAttendance is getting token or not->${token}');
+
+    final response = await http.get(
+        Uri.parse(ApiList.getAttendance(rowsPerPage, pageNumber)),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
+        });
+
+    if (response.statusCode == 200) {
+      List<AttendanceDataModel> attendanceList =
+          attendanceDataModelFromJson(response.body);
+
+      print("hello hello ,can you hear me?? ${attendanceList}");
+      return attendanceList;
+    } else {
+      print("message failed");
+    }
   }
 }

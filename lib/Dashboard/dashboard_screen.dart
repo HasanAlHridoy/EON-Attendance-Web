@@ -309,8 +309,53 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           )
                         : AttendancePopupView(),
-                const Spacer(),
 
+                // Row(
+                //   children: [
+                //     TextFormField(
+                //       style: const TextStyle(color: Colors.white),
+                //       // decoration: InputDecoration(labelText: ),
+                //     ),
+                //     TextFormField(),
+                //   ],
+                // ),
+                // TextFormField(
+                //   stl
+                // ),
+                const Spacer(),
+                // SizedBox(
+                //   width: 70,
+                //   child: TextField(
+                //     decoration: InputDecoration(
+                //       labelText: '',
+                //       border: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(12.0),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(width: 10),
+                // SizedBox(
+                //   width: 70,
+                //   child: TextField(
+                //     onChanged: (val){
+
+                //     },
+                //     decoration: InputDecoration(
+                //       labelText: '',
+                //       border: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(12.0),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(width: 10),
+
+                // ElevatedButton(
+                //     onPressed: () {
+                //       setState(() {});
+                //     },
+                //     child: const Text("Fetch Data")),
                 // *************************************************************************
                 // **********************BATCH POI UPLOAD UI**********************************
                 // *************************************************************************
@@ -343,27 +388,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           )
                         : Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              child: ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(100, 40),
-                                ),
-                                onPressed: () async {
-                                  if (widget.which_button == 'POI Table') {
-                                    // print('big ${widget.which_button}');
-                                    await batchUploadPoi();
-                                    setState(() {});
-                                  } else if (widget.which_button ==
-                                      'Field Force') {
-                                    // print('big ${widget.which_button}');
-                                    await batchUploadFieldForce();
-                                    setState(() {});
-                                  } else {}
-                                  //setState(() {});
-                                },
-                                icon: const Icon(Icons.file_copy),
-                                label: const Text("POI Upload"),
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(100, 40),
                               ),
+                              onPressed: () async {
+                                if (widget.which_button == 'POI Table') {
+                                  // print('big ${widget.which_button}');
+                                  await batchUploadPoi();
+                                  setState(() {});
+                                } else if (widget.which_button ==
+                                    'Field Force') {
+                                  // print('big ${widget.which_button}');
+                                  await batchUploadFieldForce();
+                                  setState(() {});
+                                } else {}
+                                //setState(() {});
+                              },
+                              icon: const Icon(Icons.file_copy),
+                              label: const Text("POI Upload"),
                             ),
                           )
                     : const SizedBox(
@@ -464,7 +507,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: widget.which_button == "Attendance table"
-                    ? AttendenceTableData()
+                    ? AttendenceTableData(
+                        token: widget.token,
+                      )
                     : widget.which_button == "Field Force"
                         ? FieldForceData(
                             token: widget.token,

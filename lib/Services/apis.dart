@@ -17,6 +17,9 @@ class ApiList {
   static String getEmployee(String rowsPerPage, String pageNumber) =>
       'http://$_ip:$_port/api/v1/user/employee/$rowsPerPage/$pageNumber';
 
+  static String getAttendance(String rowsPerPage, String pageNumber) =>
+      'http://$_ip:$_port/api/v1/user/employee/$rowsPerPage/$pageNumber';
+
   static String singlePoiEdit(String poiId) =>
       'http://$_ip:$_port/api/v1/poi/update-poi-entry/$poiId';
 

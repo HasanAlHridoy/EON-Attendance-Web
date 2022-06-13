@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:attendance_app/Dashboard/Tables/Poi_table_ui/poi_edit_row.dart';
 import 'package:attendance_app/Models/poi_data.dart';
 import 'package:attendance_app/Services/constants.dart';
+import 'package:flutter/services.dart';
 
 import '../../../Services/api_call.dart';
 
@@ -22,19 +23,23 @@ class _PoiTableDataState extends State<PoiTableData> {
   ScrollController scrollController = ScrollController();
   // int rowsPerPage = 5;
   String rowsPerPage = '10';
-
   var pageNumber = "1";
-  // @override
-  // void initState() {
+  // List<int> row123 = [5, 8, 10, 12];
 
-  //   print('ki ki run korbo ${widget.token}');
-
-  //   super.initState();
-  // }
-  List<int> row123 = [5, 8, 10];
   Refresh() {
     setState(() {});
   }
+
+  // @override
+  // void initState() {
+  //   print('ki ki run korbo ${widget.token}');
+  //   super.initState();
+  // }
+
+  // void dataPageNumReload() async {
+  //   var a = pageNumber;
+  //   print(a);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,24 +69,79 @@ class _PoiTableDataState extends State<PoiTableData> {
                     caption: TextStyle(color: Colors.white),
                   ),
                 ),
-                child: PaginatedDataTable(
-                  availableRowsPerPage: row123,
-                  // dragStartBehavior: DragStartBehavior.start,
-                  rowsPerPage: int.parse(rowsPerPage),
-                  onRowsPerPageChanged: (value) {
-                    var rowsPerPage1 = value ?? 0;
-                    setState(() {
-                      rowsPerPage = rowsPerPage1.toString();
-                    });
-                  },
-
-                  columns: Datacolumn(context),
-
-                  source: TableRow(
-                      poiData: data, token: widget.token, refresh: Refresh),
-
-                  // initialFirstRowIndex: 0,
-                  // headingRowHeight: 0,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Spacer(),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              onChanged: (val) {
+                                rowsPerPage = val;
+                              },
+                              style: const TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                labelText: 'Data Count',
+                                labelStyle: TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                              maxLines: 1,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              onChanged: (val) {
+                                pageNumber = val;
+                              },
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                labelText: 'Page Number',
+                                labelStyle: TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {});
+                              },
+                              child: const Text("Fetch Data")),
+                        ],
+                      ),
+                    ),
+                    PaginatedDataTable(
+                      rowsPerPage: 10,
+                      // onRowsPerPageChanged: (value) {
+                      //   var rowsPerPage1 = value ?? 0;
+                      //   setState(() {
+                      //     rowsPerPage = rowsPerPage1.toString();
+                      //   });
+                      // },
+                      columns: Datacolumn(context),
+                      source: TableRow(
+                          poiData: data, token: widget.token, refresh: Refresh),
+                    ),
+                  ],
                 ),
               ),
             ),
