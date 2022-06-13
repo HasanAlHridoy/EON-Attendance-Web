@@ -171,6 +171,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
   }
 
+  batchUploadEmployeePoi() async {
+    final results = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['csv'],
+    );
+
+    csvFile = results!.files.first.bytes;
+    //print(csvFile);
+
+    // print(imgFile);
+
+    uploadFilename = results.files.first.name;
+
+    if (csvFile != null && uploadFilename != '' && widget.token != '') {
+      ApiCall().sendEmployeePoi(csvFile, uploadFilename, widget.token);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // List<String> items = ['POI Id', 'POI type', 'User id'];
@@ -373,14 +392,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   // maximumSize: const Size(150, 50),
                                 ),
                                 onPressed: () async {
-                                  if (widget.which_button == 'POI Table') {
-                                    await batchUploadPoi();
-                                    setState(() {});
-                                  } else if (widget.which_button ==
-                                      'Field Force') {
-                                    await batchUploadFieldForce();
-                                    setState(() {});
-                                  }
+                                  await batchUploadEmployeePoi();
+                                  setState(() {});
                                 },
                                 child: const Icon(Icons.file_copy),
                               ),
@@ -388,25 +401,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           )
                         : Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: ElevatedButton.icon(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: const Size(100, 40),
+                            child: SizedBox(
+                              child: ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(100, 40),
+                                ),
+                                onPressed: () async {
+                                  // print('big ${widget.which_button}');
+                                  await batchUploadEmployeePoi();
+                                  setState(() {});
+                                },
+                                icon: const Icon(Icons.file_copy),
+                                label: const Text("POI Upload"),
                               ),
-                              onPressed: () async {
-                                if (widget.which_button == 'POI Table') {
-                                  // print('big ${widget.which_button}');
-                                  await batchUploadPoi();
-                                  setState(() {});
-                                } else if (widget.which_button ==
-                                    'Field Force') {
-                                  // print('big ${widget.which_button}');
-                                  await batchUploadFieldForce();
-                                  setState(() {});
-                                } else {}
-                                //setState(() {});
-                              },
-                              icon: const Icon(Icons.file_copy),
-                              label: const Text("POI Upload"),
                             ),
                           )
                     : const SizedBox(
