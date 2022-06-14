@@ -135,16 +135,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
       type: FileType.custom,
       allowedExtensions: ['csv'],
     );
+    if (results == null) {
+      return "File is not selected";
+    } else {
+      csvFile = results.files.first.bytes;
+      //print(csvFile);
 
-    csvFile = results!.files.first.bytes;
-    //print(csvFile);
+      // print(imgFile);
 
-    // print(imgFile);
+      uploadFilename = results.files.first.name;
 
-    uploadFilename = results.files.first.name;
-
-    if (csvFile != null && uploadFilename != '' && widget.token != '') {
-      ApiCall().sendFilePoi(csvFile, uploadFilename, widget.token);
+      if (csvFile != null && uploadFilename != '' && widget.token != '') {
+        ApiCall().sendFilePoi(csvFile, uploadFilename, widget.token);
+      }
     }
   }
 
@@ -158,16 +161,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
       type: FileType.custom,
       allowedExtensions: ['csv'],
     );
+    if (results == null) {
+      return "file is empty";
+    } else {
+      csvFile = results.files.first.bytes;
+      //print(csvFile);
 
-    csvFile = results!.files.first.bytes;
-    //print(csvFile);
+      // print(imgFile);
 
-    // print(imgFile);
+      uploadFilename = results.files.first.name;
 
-    uploadFilename = results.files.first.name;
-
-    if (csvFile != null && uploadFilename != '' && widget.token != '') {
-      ApiCall().sendFileFieldForce(csvFile, uploadFilename, widget.token);
+      if (csvFile != null && uploadFilename != '' && widget.token != '') {
+        ApiCall().sendFileFieldForce(csvFile, uploadFilename, widget.token);
+      }
     }
   }
 
@@ -178,15 +184,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
       allowedExtensions: ['csv'],
     );
 
-    csvFile = results!.files.first.bytes;
-    //print(csvFile);
+    if (results == null) {
+      return "file is empty";
+    } else {
+      csvFile = results.files.first.bytes;
+      //print(csvFile);
 
-    // print(imgFile);
+      // print(imgFile);
 
-    uploadFilename = results.files.first.name;
+      uploadFilename = results.files.first.name;
 
-    if (csvFile != null && uploadFilename != '' && widget.token != '') {
-      ApiCall().sendEmployeePoi(csvFile, uploadFilename, widget.token);
+      if (csvFile != null && uploadFilename != '' && widget.token != '') {
+        ApiCall().sendEmployeePoi(csvFile, uploadFilename, widget.token);
+      }
     }
   }
 
@@ -544,10 +554,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         .pickFiles(type: FileType.any, allowMultiple: false);
 
     if (result != null) {
-      var resultBytes = result.files.first.bytes;
+      result.files.first.bytes;
       // print(resultBytes);
       setState(() {});
     } else {
+      throw "error";
       // User canceled the picker
     }
   }

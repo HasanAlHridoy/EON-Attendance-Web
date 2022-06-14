@@ -15,6 +15,9 @@ class ApiList {
   static String singlePoiAddApi =
       'http://$_ip:$_port/api/v1/poi/single-poi-entry';
 
+  static String singleEmployeeAddApi =
+      'http://$_ip:$_port/api/v1/user/register';
+
   static String getPoi(String rowsPerPage, String pageNumber) =>
       'http://$_ip:$_port/api/v1/poi/poi/$rowsPerPage/$pageNumber';
 
@@ -22,7 +25,7 @@ class ApiList {
       'http://$_ip:$_port/api/v1/user/employee/$rowsPerPage/$pageNumber';
 
   static String getAttendance(String rowsPerPage, String pageNumber) =>
-      'http://$_ip:$_port/api/v1/user/employee/$rowsPerPage/$pageNumber';
+      'http://$_ip:$_port/api/v1/attendance/all-attendance/$rowsPerPage/$pageNumber';
 
   static String singlePoiEdit(String poiId) =>
       'http://$_ip:$_port/api/v1/poi/update-poi-entry/$poiId';
@@ -35,9 +38,6 @@ class ApiList {
 
   static String singleEmployeeDelete(String id) =>
       'http://$_ip:$_port/api/v1/user/employee/$id';
-
-  static String singleEmployeeAddApi =
-      'http://$_ip:$_port/api/v1/user/register';
 
   // static String getMyTeams(String id) => 'http://$_ip:$_port/myteams/$id';
 

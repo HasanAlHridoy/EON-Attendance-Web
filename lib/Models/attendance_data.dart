@@ -1,6 +1,7 @@
 // To parse this JSON data, do
 //
 //     final attendanceDataModel = attendanceDataModelFromJson(jsonString);
+
 import 'dart:convert';
 
 List<AttendanceDataModel> attendanceDataModelFromJson(String str) =>
@@ -13,72 +14,64 @@ String attendanceDataModelToJson(List<AttendanceDataModel> data) =>
 class AttendanceDataModel {
   AttendanceDataModel({
     required this.id,
-    required this.poiId,
-    required this.userId,
-    required this.attendanceDateTime,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
     required this.cid,
     required this.employeeId,
+    required this.attendanceDate,
+    required this.attendanceDateTime,
     required this.employeeName,
     required this.mobile,
     required this.distance,
     required this.lat,
     required this.long,
-    required this.attendanceDate,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.v,
   });
 
   String id;
-  List poiId;
-  List userId;
+  String cid;
+  String employeeId;
+  String attendanceDate;
   DateTime attendanceDateTime;
+  String employeeName;
+  String mobile;
+  dynamic distance;
+  String lat;
+  String long;
   DateTime createdAt;
   DateTime updatedAt;
   int v;
-  String cid;
-  String employeeId;
-  String employeeName;
-  String mobile;
-  double distance;
-  String lat;
-  String long;
-  DateTime attendanceDate;
 
   factory AttendanceDataModel.fromJson(Map<String, dynamic> json) =>
       AttendanceDataModel(
         id: json["_id"],
-        poiId: json["poiId"],
-        userId: json["userId"],
-        attendanceDateTime: DateTime.parse(json["attendanceDateTime"]),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
         cid: json["cid"],
         employeeId: json["employeeId"],
+        attendanceDate: json["attendanceDate"],
+        attendanceDateTime: DateTime.parse(json["attendanceDateTime"]),
         employeeName: json["employeeName"],
         mobile: json["mobile"],
         distance: json["distance"],
         lat: json["lat"],
         long: json["long"],
-        attendanceDate: json["attendanceDate"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
-        "poiId": poiId,
-        "userId": userId,
-        "attendanceDateTime": attendanceDateTime.toIso8601String(),
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "__v": v,
         "cid": cid,
         "employeeId": employeeId,
+        "attendanceDate": attendanceDate,
+        "attendanceDateTime": attendanceDateTime.toIso8601String(),
         "employeeName": employeeName,
         "mobile": mobile,
         "distance": distance,
         "lat": lat,
         "long": long,
-        "attendanceDate": attendanceDate,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "__v": v,
       };
 }

@@ -3,6 +3,7 @@ import 'package:attendance_app/dashboard/Tables/attendance_table_ui/attend_edit_
 import 'package:attendance_app/Services/constants.dart';
 import 'package:attendance_app/dummy.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../Services/api_call.dart';
 
@@ -67,6 +68,7 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
                             onChanged: (val) {
                               rowsPerPage = val;
                             },
+                            style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: '',
                               labelStyle: TextStyle(color: Colors.white),
@@ -74,6 +76,9 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                             ),
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -82,15 +87,17 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
                           child: TextField(
                             onChanged: (val) {
                               pageNumber = val;
-                              var b = int.parse(pageNumber);
-                              b++;
                             },
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             decoration: InputDecoration(
                               labelText: '',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                             ),
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -154,11 +161,11 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
         "POI Lat,Long",
         style: Theme.of(context).textTheme.subtitle2,
       )),
-      DataColumn(
-          label: Text(
-        "FIrst Date",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
+      // DataColumn(
+      //     label: Text(
+      //   "FIrst Date",
+      //   style: Theme.of(context).textTheme.subtitle2,
+      // )),
       DataColumn(
           label: Text(
         "Submit Date",
@@ -174,11 +181,11 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
         "Name",
         style: Theme.of(context).textTheme.subtitle2,
       )),
-      DataColumn(
-          label: Text(
-        "Email",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
+      // DataColumn(
+      //     label: Text(
+      //   "Email",
+      //   style: Theme.of(context).textTheme.subtitle2,
+      // )),
       DataColumn(
           label: Text(
         "Mobile",
@@ -218,17 +225,19 @@ class TableRow extends DataTableSource {
   DataRow? getRow(int index) {
     return DataRow.byIndex(index: index, cells: [
       DataCell(Center(child: Text(attendanceData[index].cid))),
-      DataCell(Center(child: Text(demoRecentFiles[index].poiId))),
+      DataCell(Center(child: Text(attendanceData[index].employeeId))),
       DataCell(Center(child: Text('${demoRecentFiles[index].name}'))),
       DataCell(Center(child: Text('${demoRecentFiles[index].poiType}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].union}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].thana}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].district}'))),
+      DataCell(Center(
+          child: Text(
+              '${attendanceData[index].lat}, ${attendanceData[index].long}'))),
+      // DataCell(Center(child: Text('${demoRecentFiles[index].thana}'))),
+      DataCell(Center(child: Text(attendanceData[index].attendanceDate))),
       DataCell(Center(child: Text('${demoRecentFiles[index].division}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].market}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].territory}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].area}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].region}'))),
+      DataCell(Center(child: Text(attendanceData[index].employeeName))),
+      // DataCell(Center(child: Text(attendanceData[index].))),
+      DataCell(Center(child: Text(attendanceData[index].mobile))),
+      DataCell(Center(child: Text(attendanceData[index].distance))),
       DataCell(Center(child: Text('${demoRecentFiles[index].latLong}'))),
       DataCell(Center(
         child: Row(

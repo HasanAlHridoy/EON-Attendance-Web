@@ -407,7 +407,8 @@ class ApiCall {
       List<AttendanceDataModel> attendanceList =
           attendanceDataModelFromJson(response.body);
 
-      print("hello hello ,can you hear me?? ${attendanceList}");
+      print('attendanceList print-> ${attendanceList}');
+
       return attendanceList;
     } else {
       print("message failed");

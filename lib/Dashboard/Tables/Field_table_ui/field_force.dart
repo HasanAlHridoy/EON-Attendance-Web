@@ -26,25 +26,24 @@ class FieldForceData extends StatefulWidget {
 
 class _FieldForceDataState extends State<FieldForceData> {
   ScrollController scrollController = ScrollController();
-  TextEditingController cidController = TextEditingController();
-  TextEditingController employeeidController = TextEditingController();
-  TextEditingController poiIdController = TextEditingController();
-  TextEditingController latLongController = TextEditingController();
-
+  // TextEditingController cidController = TextEditingController();
+  // TextEditingController employeeidController = TextEditingController();
+  // TextEditingController poiIdController = TextEditingController();
+  // TextEditingController latLongController = TextEditingController();
+  var rowsPerPage = "10";
+  String pageNumber = "1";
   Refresh() {
     setState(() {});
   }
 
   @override
   void initState() {
-    print("printing list ${widget.getList}");
+    // print("printing list ${widget.getList}");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var rowsPerPage = "10";
-    String pageNumber = "1";
     return FutureBuilder(
       future: ApiCall().getAllEmployee(widget.token, rowsPerPage, pageNumber),
       builder: (context, AsyncSnapshot snapshot) {
@@ -59,7 +58,7 @@ class _FieldForceDataState extends State<FieldForceData> {
 
           // widget.getList(data);
           // print('ki ki run korbo ${data}');
-          print('getfieldForcelist $a');
+          // print('getfieldForcelist $a');
           return SizedBox(
             width: double.infinity,
             child: SingleChildScrollView(
