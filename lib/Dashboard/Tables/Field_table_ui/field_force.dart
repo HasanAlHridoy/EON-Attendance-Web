@@ -26,12 +26,12 @@ class FieldForceData extends StatefulWidget {
 
 class _FieldForceDataState extends State<FieldForceData> {
   ScrollController scrollController = ScrollController();
-  // TextEditingController cidController = TextEditingController();
-  // TextEditingController employeeidController = TextEditingController();
-  // TextEditingController poiIdController = TextEditingController();
-  // TextEditingController latLongController = TextEditingController();
   var rowsPerPage = "10";
   String pageNumber = "1";
+
+  //Employee Poi Add Row
+  TextEditingController emplopyeeIdController = TextEditingController();
+
   Refresh() {
     setState(() {});
   }
@@ -40,6 +40,12 @@ class _FieldForceDataState extends State<FieldForceData> {
   void initState() {
     // print("printing list ${widget.getList}");
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    emplopyeeIdController.dispose();
+    super.dispose();
   }
 
   @override
@@ -142,11 +148,13 @@ class _FieldForceDataState extends State<FieldForceData> {
                       columns: Datacolumn(context),
 
                       source: TableRow(
-                          context: context,
-                          employeeData: data,
-                          token: widget.token,
-                          refresh: Refresh,
-                          poiPoints: widget.getList),
+                        context: context,
+                        employeeData: data,
+                        token: widget.token,
+                        refresh: Refresh,
+                        poiPoints: widget.getList,
+                        controller: emplopyeeIdController,
+                      ),
 
                       // initialFirstRowIndex: 0,
                       // headingRowHeight: 0,
@@ -234,15 +242,18 @@ class TableRow extends DataTableSource {
   List<EmployeeDataModel> employeeData;
   String token;
   Function refresh;
+  TextEditingController controller;
   // List<dynamic> poiPoints = widget.getList;
   List<PoiDataModel> poiPoints;
 // var a = poiPoints[i].poiId;
-  TableRow(
-      {required this.employeeData,
-      required this.context,
-      required this.token,
-      required this.refresh,
-      required this.poiPoints});
+  TableRow({
+    required this.employeeData,
+    required this.context,
+    required this.token,
+    required this.refresh,
+    required this.poiPoints,
+    required this.controller,
+  });
 
   @override
   DataRow? getRow(int index) {
@@ -273,9 +284,44 @@ class TableRow extends DataTableSource {
                     return AlertDialog(
                       backgroundColor: bgColor,
                       content: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.45,
+                        width: MediaQuery.of(context).size.width * 0.20,
+                        height: MediaQuery.of(context).size.height * 0.20,
                         child: Column(
                           children: [
+                            Form(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormField(
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                            controller: controller,
+                                            decoration: InputDecoration(
+                                              labelText: "Poi Id",
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              labelStyle: const TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(height: 25.0),
+
                             // GridView.count(
                             //   physics: const NeverScrollableScrollPhysics(),
                             //   shrinkWrap: true,
@@ -297,23 +343,23 @@ class TableRow extends DataTableSource {
                             //     PoiSingleButton(poipoints: poiPoints),
                             //   ],
                             // ),
-                            Expanded(
-                              child: GridView.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10.0,
-                                  childAspectRatio: 1 / .4,
-                                ),
-                                shrinkWrap: true,
-                                itemCount: poiPoints.length,
-                                itemBuilder: (context, idx) {
-                                  return PoiSingleButton(
-                                      title: poiPoints[idx].poiId);
-                                },
-                              ),
-                            ),
+                            // Expanded(
+                            //   child: GridView.builder(
+                            //     gridDelegate:
+                            //         const SliverGridDelegateWithFixedCrossAxisCount(
+                            //       crossAxisCount: 3,
+                            //       mainAxisSpacing: 10,
+                            //       crossAxisSpacing: 10.0,
+                            //       childAspectRatio: 1 / .4,
+                            //     ),
+                            //     shrinkWrap: true,
+                            //     itemCount: poiPoints.length,
+                            //     itemBuilder: (context, idx) {
+                            //       return PoiSingleButton(
+                            //           title: poiPoints[idx].poiId);
+                            //     },
+                            //   ),
+                            // ),
                             // ElevatedButton(
                             //     onPressed: () {},
                             //     child: Text(poiPoints[0].poiId)),
@@ -343,8 +389,17 @@ class TableRow extends DataTableSource {
                                     "Submit",
                                     style: TextStyle(color: Colors.white),
                                   ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
+                                  onPressed: () async {
+                                    if (controller.text != '') {
+                                      await ApiCall().singleEmployeePoiAddRow(
+                                          employeeData[index].id,
+                                          token,
+                                          controller.text);
+
+                                      Navigator.pop(context);
+                                      refresh;
+                                      controller.clear();
+                                    }
                                   },
                                 ),
                               ],

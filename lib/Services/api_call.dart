@@ -390,6 +390,41 @@ class ApiCall {
     return "Null";
   }
 
+  // Single Employee Poi Add Row
+  Future singleEmployeePoiAddRow(
+    String id,
+    String token,
+    String poiId,
+  ) async {
+    final response = await http.post(
+      Uri.parse(ApiList.employeePoiAddApi(id)),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Authorization": "Bearer $token"
+      },
+      body: jsonEncode(<String, String>{
+        "poiId": poiId,
+      }),
+    );
+    // print('apicall--->');
+    // print(response.statusCode);
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      Fluttertoast.showToast(
+          msg: 'Successfully Submitted ',
+          toastLength: Toast.LENGTH_SHORT,
+          webPosition: "center");
+      return data;
+    } else {
+      Fluttertoast.showToast(
+          msg: 'Failed',
+          toastLength: Toast.LENGTH_SHORT,
+          webPosition: "center");
+    }
+
+    return "Null";
+  }
+
   List<AttendanceDataModel> attendanceList = [];
 
   Future getAllAttendance(
