@@ -2,7 +2,6 @@
 //
 //     final attendanceDataModel = attendanceDataModelFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<AttendanceDataModel> attendanceDataModelFromJson(String str) =>

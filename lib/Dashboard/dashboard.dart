@@ -4,9 +4,9 @@ import 'package:attendance_app/widgets/responsive_login.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
-  String token;
+  final String token;
 
-  DashboardPage({Key? key, required this.token}) : super(key: key);
+  const DashboardPage({Key? key, required this.token}) : super(key: key);
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();

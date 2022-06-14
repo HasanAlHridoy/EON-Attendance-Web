@@ -6,7 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 class FieldPopupView extends StatefulWidget {
   Function refresh;
   String token;
-  FieldPopupView({Key? key, required this.token, required this.refresh});
+  FieldPopupView({Key? key, required this.token, required this.refresh})
+      : super(key: key);
   @override
   _FieldPopupView createState() => _FieldPopupView();
 }

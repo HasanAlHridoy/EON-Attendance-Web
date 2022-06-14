@@ -1,7 +1,5 @@
 import 'package:attendance_app/Models/attendance_data.dart';
-import 'package:attendance_app/dashboard/Tables/attendance_table_ui/attend_edit_row.dart';
 import 'package:attendance_app/Services/constants.dart';
-import 'package:attendance_app/dummy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -101,12 +99,12 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
                               ],
                               decoration: InputDecoration(
                                 labelText: 'Page Number',
-                                labelStyle: TextStyle(fontSize: 12),
+                                labelStyle: const TextStyle(fontSize: 12),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ),
                           const SizedBox(width: 10),

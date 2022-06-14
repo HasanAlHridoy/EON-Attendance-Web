@@ -2,6 +2,8 @@ import 'package:attendance_app/Services/constants.dart';
 import 'package:flutter/material.dart';
 
 class AttendEditView extends StatefulWidget {
+  const AttendEditView({Key? key}) : super(key: key);
+
   @override
   _AttendEditView createState() => _AttendEditView();
 }

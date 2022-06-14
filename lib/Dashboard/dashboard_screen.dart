@@ -337,7 +337,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               style: TextStyle(fontSize: 15),
                             ),
                           )
-                        : AttendancePopupView(),
+                        : const AttendancePopupView(),
 
                 // Row(
                 //   children: [

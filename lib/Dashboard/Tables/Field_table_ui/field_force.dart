@@ -85,7 +85,7 @@ class _FieldForceDataState extends State<FieldForceData> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           // SizedBox(
                           //   width: 80,
                           //   height: 40,
@@ -120,10 +120,10 @@ class _FieldForceDataState extends State<FieldForceData> {
                               onChanged: (val) {
                                 pageNumber = val;
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 labelText: 'Page Number',
-                                labelStyle: TextStyle(fontSize: 12),
+                                labelStyle: const TextStyle(fontSize: 12),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
@@ -320,7 +320,7 @@ class TableRow extends DataTableSource {
                               ),
                             ),
 
-                            SizedBox(height: 25.0),
+                            const SizedBox(height: 25.0),
 
                             // GridView.count(
                             //   physics: const NeverScrollableScrollPhysics(),

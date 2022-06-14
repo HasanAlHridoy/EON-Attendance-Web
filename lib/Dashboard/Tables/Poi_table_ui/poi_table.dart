@@ -36,11 +36,6 @@ class _PoiTableDataState extends State<PoiTableData> {
   //   super.initState();
   // }
 
-  // void dataPageNumReload() async {
-  //   var a = pageNumber;
-  //   print(a);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -75,7 +70,7 @@ class _PoiTableDataState extends State<PoiTableData> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           // SizedBox(
                           //   width: 80,
                           //   height: 40,
@@ -110,10 +105,10 @@ class _PoiTableDataState extends State<PoiTableData> {
                               onChanged: (val) {
                                 pageNumber = val;
                               },
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 labelText: 'Page Number',
-                                labelStyle: TextStyle(fontSize: 12),
+                                labelStyle: const TextStyle(fontSize: 12),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),

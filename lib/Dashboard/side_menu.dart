@@ -92,7 +92,7 @@ class _SideMenuState extends State<SideMenu> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: (_file.path == "zz")
-                              ? AssetImage("images/bg.jpg")
+                              ? const AssetImage("images/bg.jpg")
                               : (kIsWeb)
                                   ? Image.memory(webImage).image
                                   : Image.file(_file).image,
@@ -145,7 +145,7 @@ class _SideMenuState extends State<SideMenu> {
 class DrawListTile extends StatefulWidget {
   final String title;
   final IconData? icon;
-  Function setString;
+  final Function setString;
 
   DrawListTile({
     Key? key,
