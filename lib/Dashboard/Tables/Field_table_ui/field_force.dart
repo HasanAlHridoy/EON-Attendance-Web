@@ -26,7 +26,7 @@ class FieldForceData extends StatefulWidget {
 
 class _FieldForceDataState extends State<FieldForceData> {
   ScrollController scrollController = ScrollController();
-  var rowsPerPage = "10";
+  var rowsPerPage = "25";
   String pageNumber = "1";
 
   //Employee Poi Add Row
@@ -86,28 +86,28 @@ class _FieldForceDataState extends State<FieldForceData> {
                       child: Row(
                         children: [
                           Spacer(),
-                          SizedBox(
-                            width: 80,
-                            height: 40,
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              onChanged: (val) {
-                                rowsPerPage = val;
-                              },
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                labelText: 'Data Count',
-                                labelStyle: TextStyle(fontSize: 12),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                              ),
-                              maxLines: 1,
-                            ),
-                          ),
+                          // SizedBox(
+                          //   width: 80,
+                          //   height: 40,
+                          //   child: TextField(
+                          //     keyboardType: TextInputType.number,
+                          //     inputFormatters: <TextInputFormatter>[
+                          //       FilteringTextInputFormatter.digitsOnly
+                          //     ],
+                          //     onChanged: (val) {
+                          //       rowsPerPage = val;
+                          //     },
+                          //     style: const TextStyle(color: Colors.white),
+                          //     decoration: InputDecoration(
+                          //       labelText: 'Data Count',
+                          //       labelStyle: TextStyle(fontSize: 12),
+                          //       border: OutlineInputBorder(
+                          //         borderRadius: BorderRadius.circular(12.0),
+                          //       ),
+                          //     ),
+                          //     maxLines: 1,
+                          //   ),
+                          // ),
                           const SizedBox(width: 10),
                           SizedBox(
                             width: 80,

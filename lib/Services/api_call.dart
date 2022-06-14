@@ -442,7 +442,7 @@ class ApiCall {
       List<AttendanceDataModel> attendanceList =
           attendanceDataModelFromJson(response.body);
 
-      print('attendanceList print-> ${attendanceList}');
+      // print('attendanceList print-> ${attendanceList}');
 
       return attendanceList;
     } else {

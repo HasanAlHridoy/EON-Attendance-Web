@@ -4,7 +4,7 @@ import 'package:attendance_app/Services/constants.dart';
 import 'package:attendance_app/dummy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:intl/intl.dart';
 import '../../../Services/api_call.dart';
 
 List<AttendanceDataModel> data = [];
@@ -18,7 +18,7 @@ class AttendenceTableData extends StatefulWidget {
 
 class _AttendenceTableDataState extends State<AttendenceTableData> {
   ScrollController scrollController = ScrollController();
-  String rowsPerPage = '10';
+  String dataCount = '25';
   var pageNumber = "1";
 
   Refresh() {
@@ -33,15 +33,20 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ApiCall().getAllAttendance(widget.token, rowsPerPage, pageNumber),
+      future: ApiCall().getAllAttendance(widget.token, dataCount, pageNumber),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.data == null) {
           return const Center(
             child: Text("loading......"),
           );
         } else if (snapshot.hasData) {
-          print('showing snapshot ${snapshot.data}');
+          // print('showing snapshot ${snapshot.data}');
           data = snapshot.data as List<AttendanceDataModel>;
+          data.forEach((element) {
+            print(element.id);
+
+            print(element.poiId.length);
+          });
 
           return SizedBox(
             width: double.infinity,
@@ -59,57 +64,62 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Spacer(),
-                        SizedBox(
-                          width: 70,
-                          child: TextField(
-                            onChanged: (val) {
-                              rowsPerPage = val;
-                            },
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              labelText: '',
-                              labelStyle: TextStyle(color: Colors.white),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          // SizedBox(
+                          //   width: 70,
+                          //   child: TextField(
+                          //     onChanged: (val) {
+                          //       rowsPerPage = val;
+                          //     },
+                          //     style: TextStyle(color: Colors.white),
+                          //     decoration: InputDecoration(
+                          //       labelText: '',
+                          //       labelStyle: TextStyle(color: Colors.white),
+                          //       border: OutlineInputBorder(
+                          //         borderRadius: BorderRadius.circular(12.0),
+                          //       ),
+                          //     ),
+                          //     inputFormatters: <TextInputFormatter>[
+                          //       FilteringTextInputFormatter.digitsOnly
+                          //     ],
+                          //   ),
+                          // ),
+                          const SizedBox(width: 10),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextField(
+                              onChanged: (val) {
+                                pageNumber = val;
+                              },
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              decoration: InputDecoration(
+                                labelText: 'Page Number',
+                                labelStyle: TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
                               ),
+                              style: TextStyle(color: Colors.white),
                             ),
-                            inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          width: 70,
-                          child: TextField(
-                            onChanged: (val) {
-                              pageNumber = val;
-                            },
-                            inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            decoration: InputDecoration(
-                              labelText: '',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                            ),
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
-                            onPressed: () {
-                              setState(() {});
-                            },
-                            child: const Text("Fetch Data")),
-                      ],
+                          const SizedBox(width: 10),
+                          ElevatedButton(
+                              onPressed: () {
+                                setState(() {});
+                              },
+                              child: const Text("Fetch Data")),
+                        ],
+                      ),
                     ),
                     PaginatedDataTable(
-                      rowsPerPage: 10,
+                      // rowsPerPage: 10,
                       // onRowsPerPageChanged: (value) {
                       //   var rowsPerPage1 = value ?? 0;
                       //   setState(() {
@@ -137,73 +147,44 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
   List<DataColumn> Datacolumn(BuildContext context) {
     return <DataColumn>[
       DataColumn(
-          label: Text(
-        "CID",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
+        label: Text(
+          "Employee Name",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
       DataColumn(
-          label: Text(
-        "Employee ID",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
+        label: Text(
+          "Employee ID",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
       DataColumn(
-          label: Text(
-        "POI Id",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "Detail",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "POI Lat,Long",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
+        label: Text(
+          "Mobile Number",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
       // DataColumn(
-      //     label: Text(
-      //   "FIrst Date",
-      //   style: Theme.of(context).textTheme.subtitle2,
-      // )),
+      //   label: Text(
+      //     "POI Id",
+      //     style: Theme.of(context).textTheme.subtitle2,
+      //   ),
+      // ),
+      DataColumn(
+        label: Text(
+          "Submit Time",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
+      DataColumn(
+        label: Text(
+          "Submit Date",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
       DataColumn(
           label: Text(
-        "Submit Date",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "Submit Time",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "Name",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      // DataColumn(
-      //     label: Text(
-      //   "Email",
-      //   style: Theme.of(context).textTheme.subtitle2,
-      // )),
-      DataColumn(
-          label: Text(
-        "Mobile",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "Distance",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "Face Recognition",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
-      DataColumn(
-          label: Text(
-        "Action",
+        "Distance (m)",
         style: Theme.of(context).textTheme.subtitle2,
       )),
     ];
@@ -215,6 +196,8 @@ class TableRow extends DataTableSource {
 
   String token;
   Function refresh;
+  final DateFormat dtformat = DateFormat('dd-MM-yyyy');
+  final DateFormat tmformat = DateFormat('hh-mm-ss');
 
   TableRow(
       {required this.attendanceData,
@@ -223,33 +206,22 @@ class TableRow extends DataTableSource {
 
   @override
   DataRow? getRow(int index) {
-    return DataRow.byIndex(index: index, cells: [
-      DataCell(Center(child: Text(attendanceData[index].cid))),
-      DataCell(Center(child: Text(attendanceData[index].employeeId))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].name}'))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].poiType}'))),
-      DataCell(Center(
-          child: Text(
-              '${attendanceData[index].lat}, ${attendanceData[index].long}'))),
-      // DataCell(Center(child: Text('${demoRecentFiles[index].thana}'))),
-      DataCell(Center(child: Text(attendanceData[index].attendanceDate))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].division}'))),
-      DataCell(Center(child: Text(attendanceData[index].employeeName))),
-      // DataCell(Center(child: Text(attendanceData[index].))),
-      DataCell(Center(child: Text(attendanceData[index].mobile))),
-      DataCell(Center(child: Text(attendanceData[index].distance))),
-      DataCell(Center(child: Text('${demoRecentFiles[index].latLong}'))),
-      DataCell(Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AttendEditView(),
-            // AttendanceDeleteView(),
-          ],
-        ),
-      )),
-    ]);
+    return DataRow.byIndex(
+      index: index,
+      cells: [
+        DataCell(Center(child: Text(attendanceData[index].employeeName))),
+        DataCell(Center(child: Text(attendanceData[index].employeeId))),
+        DataCell(Center(child: Text(attendanceData[index].mobile))),
+        // DataCell(Center(child: Text(attendanceData[index].poiId.first.poiId))),
+        DataCell(Center(
+            child: Text(
+                tmformat.format(attendanceData[index].attendanceDateTime)))),
+        DataCell(Center(
+            child:
+                Text(dtformat.format(attendanceData[index].attendanceDate)))),
+        DataCell(Center(child: Text(attendanceData[index].distance ?? "0"))),
+      ],
+    );
   }
 
   @override

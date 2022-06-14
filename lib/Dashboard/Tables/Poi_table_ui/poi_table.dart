@@ -22,7 +22,7 @@ class PoiTableData extends StatefulWidget {
 class _PoiTableDataState extends State<PoiTableData> {
   ScrollController scrollController = ScrollController();
   // int rowsPerPage = 5;
-  String rowsPerPage = '10';
+  String rowsPerPage = '25';
   var pageNumber = "1";
   // List<int> row123 = [5, 8, 10, 12];
 
@@ -76,29 +76,29 @@ class _PoiTableDataState extends State<PoiTableData> {
                       child: Row(
                         children: [
                           Spacer(),
-                          SizedBox(
-                            width: 80,
-                            height: 40,
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              onChanged: (val) {
-                                rowsPerPage = val;
-                              },
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                labelText: 'Data Count',
-                                labelStyle: TextStyle(fontSize: 12),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                              ),
-                              maxLines: 1,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
+                          // SizedBox(
+                          //   width: 80,
+                          //   height: 40,
+                          //   child: TextField(
+                          //     keyboardType: TextInputType.number,
+                          //     inputFormatters: <TextInputFormatter>[
+                          //       FilteringTextInputFormatter.digitsOnly
+                          //     ],
+                          //     onChanged: (val) {
+                          //       rowsPerPage = val;
+                          //     },
+                          //     style: const TextStyle(color: Colors.white),
+                          //     decoration: InputDecoration(
+                          //       labelText: 'Data Count',
+                          //       labelStyle: TextStyle(fontSize: 12),
+                          //       border: OutlineInputBorder(
+                          //         borderRadius: BorderRadius.circular(12.0),
+                          //       ),
+                          //     ),
+                          //     maxLines: 1,
+                          //   ),
+                          // ),
+                          // const SizedBox(width: 10),
                           SizedBox(
                             width: 80,
                             height: 40,
@@ -274,7 +274,8 @@ class TableRow extends DataTableSource {
         DataCell(Center(child: Text(poiData[index].region))),
         DataCell(Center(child: Text(poiData[index].zone))),
         DataCell(Center(
-            child: Text('${poiData[index].lat},${poiData[index].long}'))),
+            child: Text(
+                '${double.parse(poiData[index].lat).toStringAsFixed(3)} , ${double.parse(poiData[index].long).toStringAsFixed(3)}'))),
         // DataCell(Center(child: Text(poiData[index].long))),
         DataCell(
           Row(
