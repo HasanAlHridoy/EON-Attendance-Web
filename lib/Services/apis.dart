@@ -15,6 +15,9 @@ class ApiList {
   static String singlePoiAddApi =
       'http://$_ip:$_port/api/v1/poi/single-poi-entry';
 
+  static String employeePoiAddApi(String id) =>
+      'http://$_ip:$_port/api/v1/user/employee-poi-add/$id';
+
   static String getPoi(String rowsPerPage, String pageNumber) =>
       'http://$_ip:$_port/api/v1/poi/poi/$rowsPerPage/$pageNumber';
 
