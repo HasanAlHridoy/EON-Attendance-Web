@@ -50,7 +50,6 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
             width: double.infinity,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              controller: scrollController,
               child: Theme(
                 data: Theme.of(context).copyWith(
                   cardColor: secondaryColor,
@@ -124,6 +123,7 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
                       //     rowsPerPage = rowsPerPage1.toString();
                       //   });
                       // },
+                      columnSpacing: 60.0,
                       columns: Datacolumn(context),
                       source: TableRow(
                           attendanceData: data,
@@ -162,12 +162,17 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
           style: Theme.of(context).textTheme.subtitle2,
         ),
       ),
-      // DataColumn(
-      //   label: Text(
-      //     "POI Id",
-      //     style: Theme.of(context).textTheme.subtitle2,
-      //   ),
-      // ),
+      const DataColumn(
+        label: Text(
+          "",
+        ),
+      ),
+      DataColumn(
+        label: Text(
+          "POI Id",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
       DataColumn(
         label: Text(
           "Submit Time",
@@ -211,10 +216,20 @@ class TableRow extends DataTableSource {
         DataCell(Center(child: Text(attendanceData[index].employeeName))),
         DataCell(Center(child: Text(attendanceData[index].employeeId))),
         DataCell(Center(child: Text(attendanceData[index].mobile))),
-        // DataCell(Center(child: Text(attendanceData[index].poiId.first.poiId))),
+        DataCell(Center(child: Text(""))),
+        (attendanceData[index].poiId.length > 0)
+            ? DataCell(
+                Center(child: Text(attendanceData[index].poiId.first.poiId)))
+            : DataCell(Center(child: Text('No PoiID'))),
+        // DataCell(Center(
+        //     child: Text(
+        //         tmformat.format(attendanceData[index].attendanceDateTime)))),
         DataCell(Center(
             child: Text(
                 tmformat.format(attendanceData[index].attendanceDateTime)))),
+        // DataCell(Center(
+        //     child: Text(
+        //         tmformat.format(attendanceData[index].attendanceDateTime)))),
         DataCell(Center(
             child:
                 Text(dtformat.format(attendanceData[index].attendanceDate)))),

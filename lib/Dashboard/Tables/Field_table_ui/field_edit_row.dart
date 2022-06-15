@@ -120,151 +120,147 @@ class _FieldEditView extends State<FieldEditView> {
                       children: <Widget>[
                         Form(
                           key: _formKey,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Employee Id',
-                                        controller: emplopyeeIdController,
-                                        isEdit: true,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Employee Id',
+                                      controller: emplopyeeIdController,
+                                      isEdit: true,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Employee Name',
+                                      controller: employeeNameController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Designation',
+                                      controller: designationController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Mobile Number',
+                                      controller: mobileController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Email',
+                                      controller: emailController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Market',
+                                      controller: marketController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Territory',
+                                      controller: territoryController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Area',
+                                      controller: areaController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Region',
+                                      controller: regionController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Zone',
+                                      controller: zoneController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.red, // Background color
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Employee Name',
-                                        controller: employeeNameController,
+                                      child: const Text(
+                                        "Cancel",
+                                        style: TextStyle(color: Colors.white),
                                       ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Designation',
-                                        controller: designationController,
+                                  ),
+                                  const SizedBox(
+                                    width: 14,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton(
+                                      // color: primaryColor,
+                                      style: ElevatedButton.styleFrom(
+                                        primary:
+                                            primaryColor, // Background color
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Mobile Number',
-                                        controller: mobileController,
+                                      child: const Text(
+                                        "Submit",
+                                        style: TextStyle(color: Colors.white),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Email',
-                                        controller: emailController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Market',
-                                        controller: marketController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Territory',
-                                        controller: territoryController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Area',
-                                        controller: areaController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Region',
-                                        controller: regionController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Zone',
-                                        controller: zoneController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary:
-                                              Colors.red, // Background color
-                                        ),
-                                        child: const Text(
-                                          "Cancel",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 14,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ElevatedButton(
-                                        // color: primaryColor,
-                                        style: ElevatedButton.styleFrom(
-                                          primary:
-                                              primaryColor, // Background color
-                                        ),
-                                        child: const Text(
-                                          "Submit",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () async {
-                                          await ApiCall().singleEmployeeEditRow(
-                                              widget.id,
-                                              widget.token,
-                                              emplopyeeIdController.text,
-                                              employeeNameController.text,
-                                              designationController.text,
-                                              mobileController.text,
-                                              emailController.text,
-                                              marketController.text,
-                                              territoryController.text,
-                                              areaController.text,
-                                              regionController.text,
-                                              zoneController.text);
+                                      onPressed: () async {
+                                        await ApiCall().singleEmployeeEditRow(
+                                            widget.id,
+                                            widget.token,
+                                            emplopyeeIdController.text,
+                                            employeeNameController.text,
+                                            designationController.text,
+                                            mobileController.text,
+                                            emailController.text,
+                                            marketController.text,
+                                            territoryController.text,
+                                            areaController.text,
+                                            regionController.text,
+                                            zoneController.text);
 
-                                          widget.refresh();
+                                        widget.refresh();
 
-                                          Navigator.pop(context);
-                                        },
-                                      ),
+                                        Navigator.pop(context);
+                                      },
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],

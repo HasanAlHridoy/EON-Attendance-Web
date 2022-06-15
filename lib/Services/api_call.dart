@@ -44,6 +44,8 @@ class ApiCall {
     if (response.statusCode == 200) {
       List<PoiDataModel> poiIdList = poiDataModelFromJson(response.body);
 
+      // print("getpoi $poiIdList");
+
       return poiIdList;
     } else {
       print("message failed");
@@ -220,7 +222,7 @@ class ApiCall {
       List<EmployeeDataModel> employeeIdList =
           employeeDataModelFromJson(response.body);
 
-      // print('employee list print-> ${employeeIdList}');
+      print('employee list print-> ${employeeIdList}');
 
       return employeeIdList;
     } else {
