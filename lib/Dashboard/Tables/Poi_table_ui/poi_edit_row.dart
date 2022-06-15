@@ -104,23 +104,23 @@ class _EditView extends State<EditView> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    poiIdController.dispose();
-    poiTypeController.dispose();
-    unionController.dispose();
-    thanaController.dispose();
-    districtController.dispose();
-    divisionController.dispose();
-    marketController.dispose();
-    territoryController.dispose();
-    areaController.dispose();
-    regionController.dispose();
-    zoneController.dispose();
-    latController.dispose();
-    longController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   poiIdController.dispose();
+  //   poiTypeController.dispose();
+  //   unionController.dispose();
+  //   thanaController.dispose();
+  //   districtController.dispose();
+  //   divisionController.dispose();
+  //   marketController.dispose();
+  //   territoryController.dispose();
+  //   areaController.dispose();
+  //   regionController.dispose();
+  //   zoneController.dispose();
+  //   latController.dispose();
+  //   longController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -140,182 +140,179 @@ class _EditView extends State<EditView> {
                       children: <Widget>[
                         Form(
                           key: _formKey,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'PoiId',
-                                        controller: poiIdController,
-                                        isEdit: true,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'PoiId',
+                                      controller: poiIdController,
+                                      isEdit: true,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'PoiType',
+                                      controller: poiTypeController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Union',
+                                      controller: unionController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Thana',
+                                      controller: thanaController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'District',
+                                      controller: districtController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Division',
+                                      controller: divisionController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Market',
+                                      controller: marketController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Territory',
+                                      controller: territoryController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Area',
+                                      controller: areaController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Region',
+                                      controller: regionController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'zone',
+                                      controller: zoneController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Lat',
+                                      controller: latController,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: TextFormPopup(
+                                      labelText: 'Long',
+                                      controller: longController,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: Colors.red,
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'PoiType',
-                                        controller: poiTypeController,
+                                      child: const Text(
+                                        "Cancel",
+                                        style: TextStyle(color: Colors.white),
                                       ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Union',
-                                        controller: unionController,
+                                  ),
+                                  const SizedBox(
+                                    width: 14,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        primary: primaryColor,
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Thana',
-                                        controller: thanaController,
+                                      child: const Text(
+                                        "Submit",
+                                        style: TextStyle(color: Colors.white),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'District',
-                                        controller: districtController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Division',
-                                        controller: divisionController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Market',
-                                        controller: marketController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Territory',
-                                        controller: territoryController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Area',
-                                        controller: areaController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Region',
-                                        controller: regionController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'zone',
-                                        controller: zoneController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Lat',
-                                        controller: latController,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TextFormPopup(
-                                        labelText: 'Long',
-                                        controller: longController,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: Colors.red,
-                                        ),
-                                        child: const Text(
-                                          "Cancel",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 14,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: primaryColor,
-                                        ),
-                                        child: const Text(
-                                          "Submit",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () async {
-                                          await ApiCall().singlePoiEditRow(
-                                            widget.id,
-                                            widget.token,
-                                            poiIdController.text,
-                                            poiTypeController.text,
-                                            unionController.text,
-                                            thanaController.text,
-                                            districtController.text,
-                                            divisionController.text,
-                                            marketController.text,
-                                            territoryController.text,
-                                            areaController.text,
-                                            regionController.text,
-                                            zoneController.text,
-                                            latController.text,
-                                            longController.text,
-                                          );
-                                          widget.refresh();
+                                      onPressed: () async {
+                                        await ApiCall().singlePoiEditRow(
+                                          widget.id,
+                                          widget.token,
+                                          poiIdController.text,
+                                          poiTypeController.text,
+                                          unionController.text,
+                                          thanaController.text,
+                                          districtController.text,
+                                          divisionController.text,
+                                          marketController.text,
+                                          territoryController.text,
+                                          areaController.text,
+                                          regionController.text,
+                                          zoneController.text,
+                                          latController.text,
+                                          longController.text,
+                                        );
+                                        widget.refresh();
 
-                                          Navigator.pop(context);
+                                        Navigator.pop(context);
 
-                                          Fluttertoast.showToast(
-                                              msg: 'Edit Successful',
-                                              toastLength: Toast.LENGTH_SHORT,
-                                              webPosition: "center");
-                                        },
-                                      ),
+                                        Fluttertoast.showToast(
+                                            msg: 'Edit Successful',
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            webPosition: "center");
+                                      },
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],

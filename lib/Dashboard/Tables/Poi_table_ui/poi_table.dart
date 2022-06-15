@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:attendance_app/Dashboard/Tables/Poi_table_ui/poi_edit_row.dart';
 import 'package:attendance_app/Models/poi_data.dart';
 import 'package:attendance_app/Services/constants.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import '../../../Services/api_call.dart';
@@ -24,15 +25,38 @@ class _PoiTableDataState extends State<PoiTableData> {
   // int rowsPerPage = 5;
   String rowsPerPage = '25';
   var pageNumber = "1";
+  bool _isVisible = true;
   // List<int> row123 = [5, 8, 10, 12];
 
   Refresh() {
     setState(() {});
   }
 
-  // @override
   // void initState() {
-  //   print('ki ki run korbo ${widget.token}');
+  //   _isVisible = true;
+  //   scrollController.addListener(() {
+  //     if (scrollController.position.userScrollDirection ==
+  //         ScrollDirection.reverse) {
+  //       if (_isVisible == true) {
+  //         /* only set when the previous state is false
+  //            * Less widget rebuilds
+  //            */
+  //         print("**** $_isVisible up"); //Move IO away from setState
+  //         setState(() {
+  //           _isVisible = false;
+  //         });
+  //       }
+  //     } else {
+  //       if (scrollController.position.userScrollDirection ==
+  //           ScrollDirection.forward) {
+  //         if (_isVisible == false) {
+  //           setState(() {
+  //             _isVisible = true;
+  //           });
+  //         }
+  //       }
+  //     }
+  //   });
   //   super.initState();
   // }
 
@@ -53,7 +77,7 @@ class _PoiTableDataState extends State<PoiTableData> {
           return SizedBox(
             width: double.infinity,
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
+              // scrollDirection: Axis.vertical,
               controller: scrollController,
               child: Theme(
                 data: Theme.of(context).copyWith(

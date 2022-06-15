@@ -32,24 +32,22 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 height: MediaQuery.of(context).size.height / 1.4,
                 width: MediaQuery.of(context).size.width / 1.5,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 32.0,
+                child: Column(
+                  children: const [
+                    SizedBox(
+                      height: 32.0,
+                    ),
+                    Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: 28.0,
                       ),
-                      Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 28.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      FormScreen(),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 24.0,
+                    ),
+                    FormScreen(),
+                  ],
                 ),
               ),
             ),
@@ -105,24 +103,22 @@ class _LoginPageState extends State<LoginPage> {
                     ]),
                 height: MediaQuery.of(context).size.height / 1.4,
                 width: MediaQuery.of(context).size.width / 4,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 32.0,
+                child: Column(
+                  children: const [
+                    SizedBox(
+                      height: 32.0,
+                    ),
+                    Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: 28.0,
                       ),
-                      Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 28.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      FormScreen(),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 24.0,
+                    ),
+                    FormScreen(),
+                  ],
                 ),
               ),
             ),

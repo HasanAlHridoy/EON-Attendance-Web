@@ -67,100 +67,96 @@ class _FieldForceDataState extends State<FieldForceData> {
           // print('getfieldForcelist $a');
           return SizedBox(
             width: double.infinity,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              controller: scrollController,
-              child: Theme(
-                data: Theme.of(context).copyWith(
-                  cardColor: secondaryColor,
-                  textTheme: const TextTheme(
-                    headline6: TextStyle(color: Colors.white),
-                    bodyText2: TextStyle(color: Colors.white),
-                    caption: TextStyle(color: Colors.white),
-                  ),
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                cardColor: secondaryColor,
+                textTheme: const TextTheme(
+                  headline6: TextStyle(color: Colors.white),
+                  bodyText2: TextStyle(color: Colors.white),
+                  caption: TextStyle(color: Colors.white),
                 ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          // SizedBox(
-                          //   width: 80,
-                          //   height: 40,
-                          //   child: TextField(
-                          //     keyboardType: TextInputType.number,
-                          //     inputFormatters: <TextInputFormatter>[
-                          //       FilteringTextInputFormatter.digitsOnly
-                          //     ],
-                          //     onChanged: (val) {
-                          //       rowsPerPage = val;
-                          //     },
-                          //     style: const TextStyle(color: Colors.white),
-                          //     decoration: InputDecoration(
-                          //       labelText: 'Data Count',
-                          //       labelStyle: TextStyle(fontSize: 12),
-                          //       border: OutlineInputBorder(
-                          //         borderRadius: BorderRadius.circular(12.0),
-                          //       ),
-                          //     ),
-                          //     maxLines: 1,
-                          //   ),
-                          // ),
-                          const SizedBox(width: 10),
-                          SizedBox(
-                            width: 80,
-                            height: 40,
-                            child: TextField(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              onChanged: (val) {
-                                pageNumber = val;
-                              },
-                              style: const TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                labelText: 'Page Number',
-                                labelStyle: const TextStyle(fontSize: 12),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        // SizedBox(
+                        //   width: 80,
+                        //   height: 40,
+                        //   child: TextField(
+                        //     keyboardType: TextInputType.number,
+                        //     inputFormatters: <TextInputFormatter>[
+                        //       FilteringTextInputFormatter.digitsOnly
+                        //     ],
+                        //     onChanged: (val) {
+                        //       rowsPerPage = val;
+                        //     },
+                        //     style: const TextStyle(color: Colors.white),
+                        //     decoration: InputDecoration(
+                        //       labelText: 'Data Count',
+                        //       labelStyle: TextStyle(fontSize: 12),
+                        //       border: OutlineInputBorder(
+                        //         borderRadius: BorderRadius.circular(12.0),
+                        //       ),
+                        //     ),
+                        //     maxLines: 1,
+                        //   ),
+                        // ),
+                        const SizedBox(width: 10),
+                        SizedBox(
+                          width: 80,
+                          height: 40,
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            onChanged: (val) {
+                              pageNumber = val;
+                            },
+                            style: const TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              labelText: 'Page Number',
+                              labelStyle: const TextStyle(fontSize: 12),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10),
-                          ElevatedButton(
-                              onPressed: () {
-                                setState(() {});
-                              },
-                              child: const Text("Fetch Data")),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(width: 10),
+                        ElevatedButton(
+                            onPressed: () {
+                              setState(() {});
+                            },
+                            child: const Text("Fetch Data")),
+                      ],
                     ),
-                    PaginatedDataTable(
-                      // dragStartBehavior: DragStartBehavior.start,
-                      onRowsPerPageChanged: (perPage) {
-                        /**Api for load */
-                      },
-                      // rowsPerPage: 10,
-                      columns: Datacolumn(context),
+                  ),
+                  PaginatedDataTable(
+                    // dragStartBehavior: DragStartBehavior.start,
+                    onRowsPerPageChanged: (perPage) {
+                      /**Api for load */
+                    },
+                    // rowsPerPage: 10,
+                    columns: Datacolumn(context),
 
-                      source: TableRow(
-                        context: context,
-                        employeeData: data,
-                        token: widget.token,
-                        refresh: Refresh,
-                        poiPoints: widget.getList,
-                        controller: emplopyeeIdController,
-                      ),
-
-                      // initialFirstRowIndex: 0,
-                      // headingRowHeight: 0,
+                    source: TableRow(
+                      context: context,
+                      employeeData: data,
+                      token: widget.token,
+                      refresh: Refresh,
+                      poiPoints: widget.getList,
+                      controller: emplopyeeIdController,
                     ),
-                  ],
-                ),
+
+                    // initialFirstRowIndex: 0,
+                    // headingRowHeight: 0,
+                  ),
+                ],
               ),
             ),
           );
@@ -289,34 +285,31 @@ class TableRow extends DataTableSource {
                         child: Column(
                           children: [
                             Form(
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: TextFormField(
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                            controller: controller,
-                                            decoration: InputDecoration(
-                                              labelText: "Poi Id",
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                              labelStyle: const TextStyle(
-                                                color: Colors.white,
-                                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: TextFormField(
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                          controller: controller,
+                                          decoration: InputDecoration(
+                                            labelText: "Poi Id",
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            labelStyle: const TextStyle(
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
 
@@ -423,7 +416,7 @@ class TableRow extends DataTableSource {
               mobile: employeeData[index].mobile,
               email: employeeData[index].email,
               market: employeeData[index].market,
-              territory: employeeData[index].area,
+              territory: employeeData[index].territory,
               area: employeeData[index].area,
               region: employeeData[index].region,
               zone: employeeData[index].zone,

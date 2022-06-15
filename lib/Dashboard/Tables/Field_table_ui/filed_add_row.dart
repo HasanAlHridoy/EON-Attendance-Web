@@ -15,7 +15,7 @@ class FieldPopupView extends StatefulWidget {
 class _FieldPopupView extends State<FieldPopupView> {
   final _formKey = GlobalKey<FormState>();
   ScrollController scrollController = ScrollController();
-  ScrollController controller = ScrollController();
+  // ScrollController controller = ScrollController();
 
   //controllers
 
@@ -57,188 +57,183 @@ class _FieldPopupView extends State<FieldPopupView> {
         width: MediaQuery.of(context).size.width * 0.45,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          controller: scrollController,
           child: Column(
             children: <Widget>[
               Form(
                 key: _formKey,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  controller: controller,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'CID',
-                              controller: cidController,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'CID',
+                            controller: cidController,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Employee ID',
+                            controller: employeeIdController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Employee Name',
+                            controller: employeeNameController,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Designation',
+                            controller: designationController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Password',
+                            controller: passwordController,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Mobile Number',
+                            controller: mobileController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Email',
+                            controller: emailController,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Market',
+                            controller: marketController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Territory',
+                            controller: territoryController,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Area',
+                            controller: areaController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Region',
+                            controller: regionController,
+                          ),
+                        ),
+                        Expanded(
+                          child: TextFormPopup(
+                            labelText: 'Zone',
+                            controller: zoneController,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.red, // Background color
                             ),
-                          ),
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Employee ID',
-                              controller: employeeIdController,
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(color: Colors.white),
                             ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                           ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Employee Name',
-                              controller: employeeNameController,
+                        ),
+                        const SizedBox(
+                          width: 14,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: primaryColor, // Background color
                             ),
-                          ),
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Designation',
-                              controller: designationController,
+                            child: const Text(
+                              "Submit",
+                              style: TextStyle(color: Colors.white),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Password',
-                              controller: passwordController,
-                            ),
-                          ),
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Mobile Number',
-                              controller: mobileController,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Email',
-                              controller: emailController,
-                            ),
-                          ),
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Market',
-                              controller: marketController,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Territory',
-                              controller: territoryController,
-                            ),
-                          ),
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Area',
-                              controller: areaController,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Region',
-                              controller: regionController,
-                            ),
-                          ),
-                          Expanded(
-                            child: TextFormPopup(
-                              labelText: 'Zone',
-                              controller: zoneController,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.red, // Background color
-                              ),
-                              child: const Text(
-                                "Cancel",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 14,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: primaryColor, // Background color
-                              ),
-                              child: const Text(
-                                "Submit",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () async {
-                                if (cidController.text != '' &&
-                                    employeeIdController.text != '' &&
-                                    employeeNameController.text != '' &&
-                                    designationController.text != '' &&
-                                    passwordController.text != '' &&
-                                    mobileController.text != '' &&
-                                    emailController.text != '' &&
-                                    marketController.text != '' &&
-                                    territoryController.text != '' &&
-                                    areaController.text != '' &&
-                                    regionController.text != '' &&
-                                    zoneController.text != '') {
-                                  await ApiCall().singleFieldForceAddRow(
-                                    widget.token,
-                                    cidController.text,
-                                    employeeIdController.text,
-                                    employeeNameController.text,
-                                    designationController.text,
-                                    passwordController.text,
-                                    mobileController.text,
-                                    emailController.text,
-                                    marketController.text,
-                                    territoryController.text,
-                                    areaController.text,
-                                    regionController.text,
-                                    zoneController.text,
-                                  );
-                                  widget.refresh();
+                            onPressed: () async {
+                              if (cidController.text != '' &&
+                                  employeeIdController.text != '' &&
+                                  employeeNameController.text != '' &&
+                                  designationController.text != '' &&
+                                  passwordController.text != '' &&
+                                  mobileController.text != '' &&
+                                  emailController.text != '' &&
+                                  marketController.text != '' &&
+                                  territoryController.text != '' &&
+                                  areaController.text != '' &&
+                                  regionController.text != '' &&
+                                  zoneController.text != '') {
+                                await ApiCall().singleFieldForceAddRow(
+                                  widget.token,
+                                  cidController.text,
+                                  employeeIdController.text,
+                                  employeeNameController.text,
+                                  designationController.text,
+                                  passwordController.text,
+                                  mobileController.text,
+                                  emailController.text,
+                                  marketController.text,
+                                  territoryController.text,
+                                  areaController.text,
+                                  regionController.text,
+                                  zoneController.text,
+                                );
+                                widget.refresh();
 
-                                  Navigator.pop(context);
-                                } else {
-                                  Fluttertoast.showToast(
-                                      msg: 'Please Enter All Fields',
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      webPosition: "center");
-                                }
-                              },
-                            ),
+                                Navigator.pop(context);
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg: 'Please Enter All Fields',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    webPosition: "center");
+                              }
+                            },
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],

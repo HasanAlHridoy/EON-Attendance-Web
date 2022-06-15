@@ -29,123 +29,118 @@ class _AttendEditView extends State<AttendEditView> {
                         children: <Widget>[
                           Form(
                             key: _formKey,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Row(
-                                    children: const [
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'EmployeeId',
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'EmployeeId',
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'PoiId',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'Detail',
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'POILatLong',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'FirstDate',
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'submitDate',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'SubmitTime',
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'Name',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: const [
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'Distance',
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextFormPopup(
+                                        labelText: 'FaceRecognition',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary:
+                                              Colors.red, // Background color
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'PoiId',
+                                        child: const Text(
+                                          "Cancel",
+                                          style: TextStyle(color: Colors.white),
                                         ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
                                       ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'Detail',
+                                    ),
+                                    const SizedBox(
+                                      width: 14,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary:
+                                              primaryColor, // Background color
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'POILatLong',
+                                        child: const Text(
+                                          "Submit",
+                                          style: TextStyle(color: Colors.white),
                                         ),
+                                        onPressed: () {},
                                       ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'FirstDate',
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'submitDate',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'SubmitTime',
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'Name',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'Distance',
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: TextFormPopup(
-                                          labelText: 'FaceRecognition',
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            primary:
-                                                Colors.red, // Background color
-                                          ),
-                                          child: const Text(
-                                            "Cancel",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 14,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            primary:
-                                                primaryColor, // Background color
-                                          ),
-                                          child: const Text(
-                                            "Submit",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ],
