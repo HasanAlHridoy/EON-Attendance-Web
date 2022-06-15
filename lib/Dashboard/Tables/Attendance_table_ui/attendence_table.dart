@@ -181,10 +181,11 @@ class _AttendenceTableDataState extends State<AttendenceTableData> {
         ),
       ),
       DataColumn(
-          label: Text(
-        "Distance (m)",
-        style: Theme.of(context).textTheme.subtitle2,
-      )),
+        label: Text(
+          "Distance (m)",
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ),
     ];
   }
 }
@@ -217,7 +218,8 @@ class TableRow extends DataTableSource {
         DataCell(Center(
             child:
                 Text(dtformat.format(attendanceData[index].attendanceDate)))),
-        DataCell(Center(child: Text(attendanceData[index].distance ?? "0"))),
+        DataCell(
+            Center(child: Text(attendanceData[index].distance.toString()))),
       ],
     );
   }
