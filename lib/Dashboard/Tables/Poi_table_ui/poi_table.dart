@@ -23,13 +23,20 @@ class PoiTableData extends StatefulWidget {
 class _PoiTableDataState extends State<PoiTableData> {
   ScrollController scrollController = ScrollController();
   // int rowsPerPage = 5;
-  String rowsPerPage = '25';
-  var pageNumber = "1";
+  String rowsPerPage = '50';
+  var pageNumber = 1;
+  // var rowNumber = 0;
   bool _isVisible = true;
   // List<int> row123 = [5, 8, 10, 12];
-
   Refresh() {
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    // pageNumber = (rowNumber / int.parse(rowsPerPage)).toInt();
+
+    super.initState();
   }
 
   // void initState() {
@@ -63,7 +70,8 @@ class _PoiTableDataState extends State<PoiTableData> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ApiCall().getAllPoi(widget.token, rowsPerPage, pageNumber),
+      future:
+          ApiCall().getAllPoi(widget.token, rowsPerPage, pageNumber.toString()),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.data == null) {
           return const Center(
@@ -72,6 +80,7 @@ class _PoiTableDataState extends State<PoiTableData> {
         } else if (snapshot.hasData) {
           // print('showing snapshot ${snapshot.data}');
           data = snapshot.data as List<PoiDataModel>;
+          // rowNumber = data.length;
           widget.getList(data);
           // print('getting getlist ${data}');
           return SizedBox(
@@ -118,6 +127,25 @@ class _PoiTableDataState extends State<PoiTableData> {
                           //   ),
                           // ),
                           // const SizedBox(width: 10),
+
+                          // Arrows Instead Of TextField Page Number
+                          // pageNumber == 1
+                          //     ? Text('')
+                          //     : IconButton(
+                          //         onPressed: () {
+                          //           pageNumber--;
+                          //           setState(() {});
+                          //         },
+                          //         icon: Icon(Icons.chevron_left),
+                          //       ),
+                          // IconButton(
+                          //   onPressed: () {
+                          //     pageNumber++;
+                          //     setState(() {});
+                          //     print(pageNumber);
+                          //   },
+                          //   icon: Icon(Icons.chevron_right),
+                          // ),
                           SizedBox(
                             width: 80,
                             height: 40,
@@ -127,7 +155,7 @@ class _PoiTableDataState extends State<PoiTableData> {
                                 FilteringTextInputFormatter.digitsOnly
                               ],
                               onChanged: (val) {
-                                pageNumber = val;
+                                pageNumber = int.parse(val);
                               },
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
@@ -257,6 +285,7 @@ class _PoiTableDataState extends State<PoiTableData> {
 
 class TableRow extends DataTableSource {
   List<PoiDataModel> poiData;
+
   // String<PoiTableData> allData;
   String token;
   Function refresh;

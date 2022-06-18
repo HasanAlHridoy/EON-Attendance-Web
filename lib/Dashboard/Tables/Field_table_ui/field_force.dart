@@ -26,7 +26,7 @@ class FieldForceData extends StatefulWidget {
 
 class _FieldForceDataState extends State<FieldForceData> {
   ScrollController scrollController = ScrollController();
-  var rowsPerPage = "25";
+  var rowsPerPage = "50";
   String pageNumber = "1";
 
   //Employee Poi Add Row

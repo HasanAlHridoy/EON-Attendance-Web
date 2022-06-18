@@ -16,7 +16,7 @@ class AttendenceTableData extends StatefulWidget {
 
 class _AttendenceTableDataState extends State<AttendenceTableData> {
   ScrollController scrollController = ScrollController();
-  String dataCount = '25';
+  String dataCount = '50';
   var pageNumber = "1";
 
   Refresh() {
@@ -225,8 +225,10 @@ class TableRow extends DataTableSource {
         //     child: Text(
         //         tmformat.format(attendanceData[index].attendanceDateTime)))),
         DataCell(Center(
-            child: Text(
-                tmformat.format(attendanceData[index].attendanceDateTime)))),
+            child: Text(DateFormat.jms().format(
+                DateTime.parse(attendanceData[index].createdAt.toString())
+                    .toLocal())))),
+
         // DataCell(Center(
         //     child: Text(
         //         tmformat.format(attendanceData[index].attendanceDateTime)))),
